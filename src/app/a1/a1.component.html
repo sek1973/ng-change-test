@@ -1,0 +1,42 @@
+<div style="color: gray">{{changeDetectionStrategy}}</div>
+<p style="font-weight: bold;"> A1 component</p>
+<form action="">
+  <hr>
+  <input type="radio"
+         name="cdStrategy"
+         (change)="detach()">Detached<br>
+  <input type="radio"
+         name="cdStrategy"
+         (change)="reattach()"
+         checked>Reattached<br>
+  <hr>
+  <input type="radio"
+         name="timer"
+         (change)="clearTimer()"
+         checked>None<br>
+  <input type="radio"
+         name="timer"
+         (change)="setInnerTimer()">Timer inside<br>
+  <input type="radio"
+         name="timer"
+         (change)="setOuterTimer()">Timer OUTSIDE<br>
+  <hr>
+</form>
+<div style="display: flex; direction: row">
+  <div>(element value): </div>
+  <div id="elementValue"
+       #elementValue>
+  </div>
+</div>
+<div>(angular binding): {{bindingValue}}</div>
+<br>
+<button (click)="onButtonClick()">Change A1 bind. A1 val, B1 input</button>
+<input #runCheck
+       type="checkbox">run detectChanges()<br>
+<br>
+<div style="padding: 10px; border: 1px solid gray; flex: 1 1; background: lightgreen;">
+  <app-b1 #appB1
+          (parentChange)="onChangeFromChild($event)"
+          [inputValue]="bindingValue"></app-b1>
+</div>
+{{onCheck()}}

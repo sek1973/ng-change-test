@@ -1,0 +1,20 @@
+<div style="color: gray">{{changeDetectionStrategy}}</div>
+<p style="font-weight: bold;"> B1 component</p>
+<form action=""></form>
+<hr>
+<input type="checkbox"
+       name="checbox"
+       (change)="toggleGenerateError($event)">Generate "ExpressionChangedAfterItHasBeenCheckedError" error<br>
+<button (click)="onButtonClick()">Change B1 bind., A1 emit => (input) B1, C1</button>
+<input #runCheck
+       type="checkbox">run detectChanges()<br>
+<br>
+From A1 (binding): {{inputValue}}
+<br>
+From B1 (binding): {{value}}
+<br>
+<br>
+<div style="padding: 10px; border: 1px solid gray; flex: 1 1; background: lightseagreen;">
+  <app-c1 [inputValue]="value"></app-c1>
+</div>
+{{onCheck()}}
