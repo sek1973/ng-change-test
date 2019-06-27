@@ -7,7 +7,8 @@ import {
   OnChanges,
   OnInit,
   SimpleChanges,
-  Input
+  Input,
+  DoCheck
 } from '@angular/core';
 
 @Component({
@@ -15,7 +16,7 @@ import {
   templateUrl: './c1.component.html'
 })
 export class C1Component
-  implements OnInit, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnChanges {
+  implements OnInit, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnChanges, DoCheck {
   @Input() inputValue = '';
   public changeDetectionStrategy: string;
 
@@ -28,6 +29,10 @@ export class C1Component
 
   onCheck() {
     console.log('C1 component OnCheck');
+  }
+
+  ngDoCheck() {
+    console.log('C1 component DoCheck');
   }
 
   ngOnChanges(changes: SimpleChanges): void {

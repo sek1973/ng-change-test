@@ -11,7 +11,8 @@ import {
   ViewChild,
   ChangeDetectorRef,
   ChangeDetectionStrategy,
-  NgZone
+  NgZone,
+  DoCheck
 } from '@angular/core';
 
 @Component({
@@ -20,7 +21,7 @@ import {
   changeDetection: ChangeDetectionStrategy.Default
 })
 export class A1Component
-  implements OnInit, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnChanges {
+  implements OnInit, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnChanges, DoCheck {
   @ViewChild('runCheck') runCheck;
   @ViewChild('elementValue') elementValue;
   @ViewChild('appB1') appB1: B1Component;
@@ -37,6 +38,10 @@ export class A1Component
 
   onCheck() {
     console.log('A1 component OnCheck');
+  }
+
+  ngDoCheck() {
+    console.log('A1 component DoCheck');
   }
 
   detach() {

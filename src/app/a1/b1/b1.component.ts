@@ -7,6 +7,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  DoCheck,
   EventEmitter,
   Input,
   NgZone,
@@ -23,7 +24,7 @@ import {
   changeDetection: ChangeDetectionStrategy.Default
 })
 export class B1Component
-  implements OnInit, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnChanges {
+  implements OnInit, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnChanges, DoCheck {
   @ViewChild('runCheck') runCheck;
   private _generateError = false;
   public value = '';
@@ -53,6 +54,10 @@ export class B1Component
 
   onCheck() {
     console.log('B1 component OnCheck');
+  }
+
+  ngDoCheck() {
+    console.log('B1 component DoCheck');
   }
 
   ngOnChanges(changes: SimpleChanges): void {

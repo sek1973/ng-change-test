@@ -4,6 +4,7 @@ import {
   AfterViewChecked,
   AfterViewInit,
   Component,
+  DoCheck,
   OnChanges,
   OnInit,
   SimpleChanges
@@ -14,7 +15,7 @@ import {
   templateUrl: './a2.component.html'
 })
 export class A2Component
-  implements OnInit, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnChanges {
+  implements OnInit, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnChanges, DoCheck {
   public changeDetectionStrategy: string;
 
   constructor() {
@@ -26,6 +27,10 @@ export class A2Component
 
   onCheck() {
     console.log('A2 component OnCheck');
+  }
+
+  ngDoCheck() {
+    console.log('A2 component DoCheck');
   }
 
   ngOnChanges(changes: SimpleChanges): void {
