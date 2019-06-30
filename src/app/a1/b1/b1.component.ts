@@ -29,6 +29,7 @@ export class B1Component
   private _generateError = false;
   public value = '';
   public changeDetectionStrategy: string;
+  public loopCount = 0;
 
   private _inputValue = '';
   @Input()
@@ -85,6 +86,11 @@ export class B1Component
     if (this._generateError) {
       this.parentChange.emit('Test value'); // this will cause ExpressionChangedAfterItHasBeenCheckedError :)
     }
+    if (this.loopCount) {
+      Promise.resolve().then(() => {
+        this.parentChange.emit('Loop test value ' + this.loopCount--);
+      }); // this will cause infinite loop of change detection cycles - limited to loopCount number to avoid browser hanging
+    }
   }
 
   toggleGenerateError(event: any) {
@@ -93,6 +99,15 @@ export class B1Component
 
   onButtonClick() {
     this.value = 'Change from B1 button ' + new Date().toLocaleTimeString();
+    this.parentChange.emit(this.value);
+    if (this.runCheck.nativeElement.checked) {
+      this.changeDetectorRef.detectChanges();
+    }
+  }
+
+  infiniteLoopClick() {
+    this.loopCount = 10;
+    this.value = 'Change from B1 infinite loop button ' + new Date().toLocaleTimeString();
     this.parentChange.emit(this.value);
     if (this.runCheck.nativeElement.checked) {
       this.changeDetectorRef.detectChanges();

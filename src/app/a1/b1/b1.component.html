@@ -2,8 +2,11 @@
 <p style="font-weight: bold;"> B1 component</p>
 <form action=""></form>
 <hr>
+<button (click)="infiniteLoopClick()">Run infinite loop of change detection</button>
+<br>
+<br>
 <input type="checkbox"
-       name="checbox"
+       name="cdError"
        (change)="toggleGenerateError($event)">Generate "ExpressionChangedAfterItHasBeenCheckedError" error<br>
 <button (click)="onButtonClick()">Change B1 bind., A1 emit => (input) B1, C1</button>
 <input #runCheck

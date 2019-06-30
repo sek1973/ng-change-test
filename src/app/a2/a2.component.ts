@@ -17,12 +17,21 @@ import {
 export class A2Component
   implements OnInit, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnChanges, DoCheck {
   public changeDetectionStrategy: string;
+  public counter = 0;
 
   constructor() {
     this.changeDetectionStrategy =
       (<any>A2Component).__annotations__[0].changeDetection === 1
         ? 'ChangeDetectionStrategy.Default'
         : 'ChangeDetectionStrategy.OnPush';
+  }
+
+  increment() {
+    this.counter++;
+  }
+
+  decrement() {
+    this.counter--;
   }
 
   onCheck() {

@@ -1,3 +1,15 @@
 <div style="color: gray">{{changeDetectionStrategy}}</div>
 <p style="font-weight: bold;"> A2 component</p>
 {{onCheck()}}
+<h3>On each button click two ApplicationRef.tick() are triggred</h3>
+<div>
+  <div>Counter: <input [(ngModel)]="counter"
+           #counterValue="ngModel"></div>
+
+  <div>Counter value: {{ counter }}</div>
+  <div>Exported value: {{ counterValue.value }}</div>
+</div>
+<div>
+  <button (click)="increment()">Increment</button>
+  <button (click)="decrement()">Decrement</button>
+</div>

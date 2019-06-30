@@ -1,19 +1,13 @@
-import { B1Component } from './b1/b1.component';
 import {
   AfterContentChecked,
   AfterContentInit,
   AfterViewChecked,
-  AfterViewInit,
-  Component,
-  OnChanges,
+  AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, DoCheck, NgZone, OnChanges,
   OnInit,
   SimpleChanges,
-  ViewChild,
-  ChangeDetectorRef,
-  ChangeDetectionStrategy,
-  NgZone,
-  DoCheck
+  ViewChild
 } from '@angular/core';
+import { B1Component } from './b1/b1.component';
 
 @Component({
   selector: 'app-a1',
@@ -22,9 +16,11 @@ import {
 })
 export class A1Component
   implements OnInit, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnChanges, DoCheck {
-  @ViewChild('runCheck', { static: true }) runCheck;
-  @ViewChild('elementValue', { static: true }) elementValue;
-  @ViewChild('appB1', { static: true }) appB1: B1Component;
+  @ViewChild('runCheck') runCheck;
+  @ViewChild('addChangePromise') addChangePromise;
+  @ViewChild('addChangeTimeout') addChangeTimeout;
+  @ViewChild('elementValue') elementValue;
+  @ViewChild('appB1') appB1: B1Component;
   timer: any;
   bindingValue = '';
   public changeDetectionStrategy: string;
@@ -116,9 +112,24 @@ export class A1Component
 
   onButtonClick() {
     this.bindingValue = 'Changed by A1 button click ' + new Date().toLocaleTimeString();
+    console.log(this.bindingValue);
     this.elementValue.nativeElement.innerText = this.bindingValue;
     if (this.runCheck.nativeElement.checked) {
       this.changeDetectorRef.detectChanges();
+    }
+    if (this.addChangePromise.nativeElement.checked) {
+      Promise.resolve().then(() => {
+        this.bindingValue = 'Changed by A1 button click (Promise) ' + new Date().toLocaleTimeString();
+        console.log(this.bindingValue);
+        this.elementValue.nativeElement.innerText = this.bindingValue;
+      });
+    }
+    if (this.addChangeTimeout.nativeElement.checked) {
+      setTimeout(() => {
+        this.bindingValue = 'Changed by A1 button click (Timeout) ' + new Date().toLocaleTimeString();
+        console.log(this.bindingValue);
+        this.elementValue.nativeElement.innerText = this.bindingValue;
+      });
     }
   }
 }
