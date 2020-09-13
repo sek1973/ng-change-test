@@ -22,9 +22,9 @@ import {
 })
 export class A1Component
   implements OnInit, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnChanges, DoCheck {
-  @ViewChild('runCheck') runCheck;
-  @ViewChild('elementValue') elementValue;
-  @ViewChild('appB1') appB1: B1Component;
+  @ViewChild('runCheck', { static: true }) runCheck;
+  @ViewChild('elementValue', { static: true }) elementValue;
+  @ViewChild('appB1', { static: true }) appB1: B1Component;
   timer: any;
   bindingValue = '';
   public changeDetectionStrategy: string;

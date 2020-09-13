@@ -38,7 +38,7 @@ export class AppComponent
         : 'ChangeDetectionStrategy.OnPush';
   }
 
-  @ViewChild('appA1') appA1: A1Component;
+  @ViewChild('appA1', { static: true }) appA1: A1Component;
 
   detach() {
     this._detached = true;

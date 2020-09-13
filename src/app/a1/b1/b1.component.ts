@@ -25,7 +25,7 @@ import {
 })
 export class B1Component
   implements OnInit, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnChanges, DoCheck {
-  @ViewChild('runCheck') runCheck;
+  @ViewChild('runCheck', { static: true }) runCheck;
   private _generateError = false;
   public value = '';
   public changeDetectionStrategy: string;
