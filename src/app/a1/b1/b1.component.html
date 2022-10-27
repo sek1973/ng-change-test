@@ -2,7 +2,8 @@
 <p style="font-weight: bold;"> B1 component</p>
 <form action=""></form>
 <hr>
-<button (click)="infiniteLoopClick()">Run infinite loop of change detection</button>
+<button #infiniteButton
+        (click)="infiniteLoopClick()">Run infinite loop of change detection</button>
 <br>
 <br>
 <input type="checkbox"

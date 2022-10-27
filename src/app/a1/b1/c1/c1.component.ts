@@ -8,7 +8,8 @@ import {
   OnInit,
   SimpleChanges,
   Input,
-  DoCheck
+  DoCheck,
+  ViewChild
 } from '@angular/core';
 
 @Component({
@@ -18,6 +19,9 @@ import {
 export class C1Component
   implements OnInit, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnChanges, DoCheck {
   @Input() inputValue = '';
+  @ViewChild('componentName') set componentName(value: HTMLElement) {
+    console.log('C1 ViewChild set: ', value);
+  }
   public changeDetectionStrategy: string;
 
   constructor() {

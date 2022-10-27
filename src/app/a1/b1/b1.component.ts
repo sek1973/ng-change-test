@@ -26,6 +26,9 @@ import {
 export class B1Component
   implements OnInit, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnChanges, DoCheck {
   @ViewChild('runCheck', { static: true }) runCheck;
+  @ViewChild('infiniteButton') set infiniteButton(value: HTMLElement) {
+    console.log('B1 ViewChild set: ', value);
+  }
   private _generateError = false;
   public value = '';
   public changeDetectionStrategy: string;

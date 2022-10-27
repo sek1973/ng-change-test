@@ -1,6 +1,14 @@
 <div style="color: gray">{{changeDetectionStrategy}}</div>
-<p style="font-weight: bold;"> C1 component</p>
+<div *ngIf=true>
+  <ng-container [ngTemplateOutlet]="componentTitle"></ng-container>
+</div>
 <br>
 From B1 (binding): {{inputValue}}
 <br>
 {{onCheck()}}
+
+<ng-template #componentTitle>
+  <p *ngIf="true"
+  #componentName
+  style="font-weight: bold;"> C1 component</p>
+</ng-template>
